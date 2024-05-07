@@ -1,1 +1,1 @@
-# paywill-auto-version-buld-action
+# paywill-auto-version-build-action
