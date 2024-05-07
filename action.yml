@@ -1,0 +1,15 @@
+name: 'auto-version-build-number-update'
+description: 'Updates the build number for ios and Android, aswell as the marketing version number.'
+inputs:
+  path-to-control-file: 
+    description: 'The TSX file that holds the version-string and build numbers for iOS and Android.'
+    required: true
+    default: 'constants.tsx'
+
+
+runs:
+  using: "composite"
+  steps:
+    -name: Check the build string
+     run: python scripts/CheckTag.py --tag ${GITHUB_REF#refs/*/}
+     
