@@ -12,5 +12,5 @@ runs:
   steps:
     - name: Check the build string
       shell: bash
-      run: python scripts/CheckTag.py --tag ${GITHUB_REF#refs/*/}
+      run: python ${{github.action_path}}scripts/CheckTag.py --tag ${GITHUB_REF#refs/*/}
      
