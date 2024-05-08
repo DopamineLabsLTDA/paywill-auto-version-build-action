@@ -7,7 +7,8 @@ def CheckTag(tag):
     # Check for letters
     if(any(c.isalpha() for c in tag)): 
         raise Exception("Exception: Tag must only contain numbers separated by dots, i.e 1.0.2, no letters allowed.")
-    
+    else:
+        print("Tag is a valid <version> string")
     
 
 
