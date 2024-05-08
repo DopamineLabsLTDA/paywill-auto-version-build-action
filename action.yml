@@ -10,6 +10,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    -name: Check the build string
-     run: python scripts/CheckTag.py --tag ${GITHUB_REF#refs/*/}
+    - name: Check the build string
+      run: python scripts/CheckTag.py --tag ${GITHUB_REF#refs/*/}
      
