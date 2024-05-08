@@ -11,5 +11,6 @@ runs:
   using: "composite"
   steps:
     - name: Check the build string
+      shell: bash
       run: python scripts/CheckTag.py --tag ${GITHUB_REF#refs/*/}
      
