@@ -102,14 +102,16 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     
-    # Tag-Check
+    
 
     try:
+        # Tag-Check
         CheckTag(args.tag)
+        # Update version/build file
+        updateFile(args.version_file)
 
     except Exception  as e:
         print(e)
         exit(1)
 
-    # Update version/build file
-    updateFile(args.version_file)
+    

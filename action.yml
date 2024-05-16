@@ -14,3 +14,7 @@ runs:
       shell: bash
       run: python ${{github.action_path}}/scripts/CheckUpdate.py --tag ${GITHUB_REF#refs/*/} --version-file $INPUT_PATH_TO_CONTROL_FILE
      
+    - name: Commit the changes
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: Automatic build number update
