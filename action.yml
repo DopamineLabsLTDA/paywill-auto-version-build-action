@@ -12,7 +12,7 @@ runs:
   steps:
     - name: Check the build string
       shell: bash
-      run: python ${{github.action_path}}/scripts/CheckUpdate.py --tag ${GITHUB_REF#refs/*/} --version-file $INPUT_PATH_TO_CONTROL_FILE
+      run: python ${{github.action_path}}/scripts/CheckUpdate.py --tag ${GITHUB_REF#refs/*/} --version-file ${{ inputs.path-to-control-file}}
      
     - name: Commit the changes
       uses: stefanzweifel/git-auto-commit-action@v5
