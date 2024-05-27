@@ -4,7 +4,6 @@ import re
 
 # Constants
 VERSION_VAR_NAME = 'PUBLIC_VERSION'
-VERSION_PLACEHOLDER = 'Interna'
 ANDROID_VAR_NAME = 'BUILD_NUMBER'
 IOS_VAR_NAME = 'BUILD_IOS'
 
@@ -71,7 +70,7 @@ def updateFile(path, tag):
     # Write to file
     with open(path, 'w') as f:
         # Change version string
-        data = re.sub(VERSION_PLACEHOLDER, tag, data)
+        data = re.sub(r"(Versión).*(';)", "Versión " + tag+"';", data)
         # Change Android build
         data = re.sub(ANDROID_VAR_NAME+" = "+r'\d+', f"{ANDROID_VAR_NAME} = {android_build_number}", data)
         # Change iOS build
