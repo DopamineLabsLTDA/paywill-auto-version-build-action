@@ -3,6 +3,8 @@ import os
 import re
 
 # Constants
+VERSION_VAR_NAME = 'PUBLIC_VERSION'
+VERSION_PLACEHOLDER = 'Interna'
 ANDROID_VAR_NAME = 'BUILD_NUMBER'
 IOS_VAR_NAME = 'BUILD_IOS'
 
@@ -18,7 +20,7 @@ def CheckTag(tag):
 
 # Updates the version file. Changes string 'Version Interna' for the corresponding tag value. Increases the build counter for the iOS/Android variables.
 
-def updateFile(path):
+def updateFile(path, tag):
 
     # Check if path exists 
     if(not os.path.isfile(path)):
@@ -63,8 +65,13 @@ def updateFile(path):
     ios_build_number +=1
     print(f"New iOS build will have {ios_build_number} build number")
 
+    # Change version string
+    print(f"New version string will be {tag}")
+
     # Write to file
     with open(path, 'w') as f:
+        # Change version string
+        data = re.sub(VERSION_PLACEHOLDER, tag, data)
         # Change Android build
         data = re.sub(ANDROID_VAR_NAME+" = "+r'\d+', f"{ANDROID_VAR_NAME} = {android_build_number}", data)
         # Change iOS build
@@ -108,7 +115,7 @@ if __name__ == "__main__":
         # Tag-Check
         CheckTag(args.tag)
         # Update version/build file
-        updateFile(args.version_file)
+        updateFile(args.version_file, args.tag)
 
     except Exception  as e:
         print(e)
